@@ -9,6 +9,49 @@ const LinkedList = require("../lib/linkedList");
  * null if list length < 3
  *
  */
-function thirdFromEnd(list) {}
+function thirdFromEnd2(list) {
+    if (!list.head) {
+        return null;
+    }
+    let last = list.head;
+    let second = null;
+    let third = null;
+    while(last.next){
+        tmp = last.next;
+        third = second;
+        second = last;
+        last = tmp;
+    }
+    return third;
+}
+
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+
+function thirdFromEnd(list) {
+  if (!list.head) {
+    return null;
+  }
+  let pointer1 = list.head;
+  let i = 0;
+  while(i < 2 && pointer1.next){
+    pointer1 = pointer1.next;
+    i++;
+  }
+  if(i < 2){
+    return null;
+  }
+  let pointer2 = list.head;
+  while(pointer1.next){
+    pointer1 = pointer1.next;
+    pointer2 = pointer2.next;
+  }
+  return pointer2;
+}
+
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 
 module.exports = thirdFromEnd;
+
